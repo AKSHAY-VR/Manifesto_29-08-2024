@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto Promises</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo"> <!-- Replace with your logo path -->
+            </div>
+        </div>
+
+        <div class="page-buttons-container">
+            <div class="page-button" onclick="window.location.href='index.html'">
+                Manifesto Promises
+            </div>
+            <div class="page-button" onclick="window.location.href='fantasy.html'">
+                Fantasy Manifesto
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="candidate-cards-section" class="new-candidate-section">
+                <div class="new-candidate-title-container">
+                    <h2 class="new-candidate-title">Summary Statistics for Candidate Promises</h2>
+                </div>
+                <div class="new-candidate-card-container" id="candidate-cards">
+                    <!-- Candidate cards go here -->
+                </div>
+            </div>
+
+            <div class="filter-container">
+                <div class="multiselect">
+                    <div class="selectBox" onclick="toggleCheckboxes('candidate-checkboxes')">
+                        <span>Select Candidates</span>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="candidate-checkboxes" class="checkboxes"></div>
+                </div>
+
+                <div class="multiselect">
+                    <div class="selectBox" onclick="toggleCheckboxes('topic-checkboxes')">
+                        <span>Select Topics</span>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="topic-checkboxes" class="checkboxes"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
+    <script src="manifesto.js"></script>
+</body>
+</html>

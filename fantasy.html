@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Manifesto</title>
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: #000;
+            color: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1; /* Allow the wrapper to fill the available space */
+            text-align: center; /* Center text within the wrapper */
+        }
+
+        .start-button, .back-button, .manifesto-button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            background-color: #ff4500;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            display: inline-block;
+        }
+
+        .start-button:hover, .back-button:hover, .manifesto-button:hover {
+            background-color: #ff6347;
+            transform: scale(1.05);
+        }
+
+        .start-button:disabled, .back-button:disabled, .manifesto-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+        }
+
+        .scrollable-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            height: calc(100vh - 140px); /* Adjust height to ensure buttons are visible */
+            overflow-y: auto; /* Enable scrolling within this section */
+            margin-bottom: 20px;
+        }
+
+        .options-container label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .start-container {
+            display: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+            right: 0.1px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #000; /* Match the background color */
+            z-index: 1000; /* Ensure the buttons are above other content */
+        }
+
+        .candidate-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            white-space: normal;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .candidate-card:hover {
+            transform: scale(1.1) translateZ(30px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 15;
+        }
+
+        .candidate-card img {
+            display: block;
+            margin: 0 auto 10px auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+        }
+
+        #topic-options, #promise-category-options, #candidate-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Grid layout for filling space */
+    gap: 10px; /* Space between items */
+    padding: 20px;
+    text-align: left;
+}
+
+#topic-options label, #promise-category-options label, #candidate-options label {
+    font-size: 1.2em;
+    padding: 10px;
+    background-color: #222;
+    border-radius: 8px;
+    border: 1px solid #444;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#topic-options label:hover, #promise-category-options label:hover, #candidate-options label:hover {
+    background-color: #333;
+}
+
+#promise-category-options, #topic-options, #candidate-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    text-align: left;
+    padding-bottom: 100px; /* Add this line to ensure the last item isn't hidden by buttons */
+}
+
+.start-container h2 {
+    margin-top: 60px; /* Increase margin at the top for extra space */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    z-index: 1000;
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+</head>
+<body>
+    <div id="fantasy11-content" class="wrapper">
+        <div id="fantasy11-game-start" class="start-container" style="display: block;">
+            <h1 class="welcome-text">Welcome to Fantasy Manifesto</h1>
+            <button id="start-button" class="start-button" onclick="startFantasyGame()">Get Started</button>
+            <div class="button-container">
+                <button class="manifesto-button" onclick="goToManifesto()">Go Back to Manifesto Promise</button>
+            </div>
+        </div>
+
+        <div id="topic-selection" class="start-container">
+            <button class="back-button" onclick="goBack('fantasy11-game-start')">Go Back</button>
+            <h2 class="welcome-text">Select a Topic</h2>
+            <div id="topic-options" class="scrollable-container"></div>
+            <div class="button-container">
+                <button id="confirm-topic-button" class="start-button" onclick="confirmTopic()" disabled>Confirm Topic</button>
+                <button class="manifesto-button" onclick="goToManifesto()">Go Back to Manifesto Promise</button>
+            </div>
+        </div>
+
+        <div id="promise-category-selection" class="start-container">
+            <button class="back-button" onclick="goBack('topic-selection')">Go Back</button>
+            <h2 class="welcome-text">Select a Promise Category</h2>
+            <div id="promise-category-options" class="scrollable-container"></div>
+            <div class="button-container">
+                <button id="confirm-promise-category-button" class="start-button" onclick="confirmPromiseCategory()" disabled>Confirm Category</button>
+                <button class="manifesto-button" onclick="goToManifesto()">Go Back to Manifesto Promise</button>
+            </div>
+        </div>
+
+        <div id="candidate-selection" class="start-container" style="display: none;">
+            <button class="back-button" onclick="goBack('promise-category-selection')">Go Back</button>
+            <h2 class="welcome-text">Select Candidate Promises</h2>
+            <div id="candidate-options" class="promise-list-container">
+                <!-- Candidate-specific promises will be populated here -->
+            </div>
+
+            <div id="candidate-selection" class="start-container" style="display: none;">
+                <button class="back-button" onclick="goBack('promise-category-selection')">Go Back</button>
+                <h2 class="welcome-text">Select Candidate Promises</h2>
+            
+                <div id="candidate-options" class="candidate-list-container">
+                    <!-- Candidate-specific promises will be populated here -->
+                </div>
+            
+                <div class="button-container">
+                    <button id="finalize-candidate-button" class="start-button" onclick="finalizeSelection()">Finalize</button>
+                </div>
+            </div>
+            
+        
+            <div class="button-container">
+                <button id="confirm-candidate-button" class="start-button" onclick="finalizeSelection()">Finalize</button>
+                <button class="start-button" onclick="goBackToManifesto()">Go Back to Manifesto Promise</button>
+            </div>
+        </div>
+
+        <div id="result-page" class="start-container">
+            <button class="back-button" onclick="goBack('candidate-selection')">Go Back</button>
+            <h2 class="welcome-text">Results</h2>
+            <div id="top-candidates" class="scrollable-container"></div>
+            <div class="button-container">
+                <button class="manifesto-button" onclick="goToManifesto()">Go Back to Manifesto Promise</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="fantasy.js"></script>
+</body>
+</html>
