@@ -19,7 +19,7 @@
             <div class="page-button" onclick="window.location.href='index.html'">
                 Manifesto Promises
             </div>
-            <div class="page-button" onclick="window.location.href='fantasy.html'">
+            <div class="page-button" onclick="loadFantasyIframe()">
                 Fantasy Manifesto
             </div>
         </div>
@@ -57,5 +57,10 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
     <script src="manifesto.js"></script>
+    <script>
+        function loadFantasyIframe() {
+            window.location.href = 'fantasy.html'; // Navigate to fantasy.html to load the iframe
+        }
+    </script>
 </body>
 </html>
