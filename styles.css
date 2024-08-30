@@ -1,581 +1,581 @@
 /* CSS Styles */
 
-        /* Wrapper to centre the content */
-        .wrapper {
-            width: 100%;
-            max-width: 1500px;  /* Adjust the max-width to your preference */
-            margin: 0 auto;  /* Centres the wrapper horizontally */
-            padding: 20px;   /* Optional padding */
-            box-sizing: border-box; /* Ensure padding does not affect total width */
-        }
-
-        body {
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5ebd4;
-        }
-
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 50px;
-            background-image: url('parliament.jpg'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            color: #fbedcb;
-            z-index: 10; /* Ensure header is above other content */
-            position: relative;
-        }
-
-        .logo-container img {
-            height: 70px;
-        }
-
-        .filter-container {
-            text-align: center; /* Center the filter title */
-            z-index: 15; /* Ensure filters are above section titles */
-            position: relative;
-            display: flex;
-            gap: 8px; /* Remove the gap between the filters */
-            flex-wrap: wrap; /* Allow filters to wrap to the next line if necessary */
-            justify-content: right; /* Center the entire filter container */
-            align-items: center;
-            color: black; /* Set text color to black */
-            margin-top: 20px; /* Add space between filters and the candidate card section */
-        }
-
-        .multiselect {
-            position: relative;
-            display: inline-block;
-            min-width: 150px; /* Ensure filters have a smaller minimum width */
-            width: auto;
-        }
-
-        .selectBox {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px; /* Reduced padding */
-            background-color: #85808075;
-            border: 2px solid #888080;
-            border-left-width: 0px; /* Remove the left border to merge with the previous element */
-            cursor: pointer;
-            min-width: 150px; /* Reduced min-width for smaller containers */
-            width: auto;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            font-size: 16px;
-            transition: all 0.3s ease;
-            color: black; /* Set the text color to black */
-        }
-
-        /* Apply border-radius to the left box */
-        .filter-container .multiselect:first-child .selectBox {
-            border-radius: 5px 0 0 5px; /* Rounded corners on the left */
-            border-left-width: 2px; /* Restore the left border */
-        }
-
-        /* Apply border-radius to the right box */
-        .filter-container .multiselect:last-child .selectBox {
-            border-radius: 0 5px 5px 0; /* Rounded corners on the right */
-        }
-
-        .selectBox:hover +.checkboxes, .checkboxes:hover {
-            border-color: #7a7777; /* Slightly darken border on hover */
-            background-color: #85808075;
-            display: block;
-        }
-
-        .selectBox::after {
-            content: '\25BC'; /* Unicode for down arrow */
-            font-size: 12px;
-            margin-left: 10px;
-            color: #888;
-        }
-
-        .checkboxes {
-            display: none;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            background-color: white;
-            position: absolute;
-            z-index: 1;
-            max-height: 200px;
-            overflow-y: auto;
-            width: 100%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: left; /* Align text to the left */
-            padding-left: 10px; /* Add some padding to the left for better alignment */
-        }
-
-        .checkboxes label {
-            display: block;
-            padding: 8px;
-            cursor: pointer;
-            color: #333; /* Set the text color to dark grey */
-            transition: background-color 0.2s ease;
-            text-align: left; /* Ensure text is aligned to the left */
-        }
-
-        .checkboxes label:hover {
-            background-color: #f0f0f0;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .topic-section {
-            margin-bottom: 40px;
-            position: relative;
-            padding-top: 40px; /* Space for the sticky title */
-        }
-
-        .section-title-container {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 5; /* Ensure titles are above the cards but below filters */
-            background-color: #f5ebd4;
-            border-bottom: 2px solid #ccc;
-            padding: 10px;
-        }
-
-        .section-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .candidate-card-container {
-            overflow-x: auto; /* Enable horizontal scrolling */
-            white-space: nowrap; /* Prevent wrapping */
-            padding: 20px;
-        }
-
-        .candidate-card {
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px; /* Centres the image horizontally */
-            display: inline-block;
-            vertical-align: top;
-            text-align: center;
-            width: 200px; /* Consistent width for all cards */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            white-space: normal; /* Ensure card content wraps within the card */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animation */
-        }
-
-        .candidate-card:hover {
-            transform: scale(1.1) translateZ(30px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            z-index: 15; /* Ensure hover state remains visible above other content */
-        }
-
-        .candidate-card img {
-            display: block;
-            margin: 0 auto 10px auto; /* Centres the image and adds margin below it */
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-        }
-
-        .party-symbol {
-            text-align: center; /* Aligns the image to the center */
-            margin-top: 10px;
-        }
-
-        .party-symbol img {
-            width: 50px; /* Smaller width for the party symbol */
-            height: 50px; /* Smaller height for the party symbol */
-        }
-
-        .reference-button {
-            display: block;
-            padding: 8px 8px;
-            background-color: #f7f8f3ee;
-            color: rgb(22, 22, 22);
-            border: black;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            margin-top: auto; /* Push the button to the bottom */
-        }
-
-        .reference-button:hover {
-            background-color: #959c8074;
-        }
-
-        .promise-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: black; /* Set the text color to black */
-        }
-
-        .promise-page {
-            font-size: 0.9em;
-            color: black; /* Set the text color to black */
-            margin-bottom: 10px;
-        }
-
-        .promise-container {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 10px;
-            margin: 10px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: white; /* Default background color */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: auto; /* Allow the container to expand to fit content */
-        }
-
-        /* Updated Page navigation buttons container */
-        .page-buttons-container {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-            width: 100%;
-        }
-
-        .page-button {
-            flex: 1;
-            padding: 15px 0;
-            background-color: rgba(0, 0, 0, 0.2); /* Set a semi-transparent background */
-            color: black; /* Set text colour to black */
-            border: 2px solid #ccc;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 10px; /* Add rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
-        }
-
-        .page-button:not(:last-child) {
-            border-right: none; /* Remove border between buttons */
-        }
-
-        .page-button:hover {
-            background-color: rgba(255, 255, 255, 0.3); /* Lighten the background on hover */
-            color: black; /* Keep text black on hover */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Intensify shadow on hover */
-            transform: translateY(-2px); /* Slight upward movement on hover */
-        }
-
-        /* Add styles for Fantasy 11 page */
-        .fantasy-candidate-container {
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            background-color: #f7f8f3ee;
-        }
-
-        .fantasy-candidate-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .fantasy-promise {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .fantasy-promise input {
-            margin-right: 10px;
-        }
-
-        .candidate-card:hover {
-            transform: scale(1.1) translateZ(30px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            z-index: 15; /* Ensure hover state remains visible above other content */
-        }
-
-        /* Modal styles */
-        .popup-modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1000; /* Stay on top */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
-        }
-
-        .popup-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 500px; /* Limit the width */
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .popup-box {
-            border: 2px dashed #ccc;
-            width: 30%;
-            height: 100px;
-            background-color: #f7f8f3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* New candidate section styles */
-        .new-candidate-section {
-            padding: 30px;
-            background-color: #f5ebd4; /* White background */
-            border-radius: 10px;
-            margin-bottom: 20px; /* Space below the section */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            overflow-x: hidden; /* Prevent vertical scrolling */
-            white-space: nowrap; /* Prevent wrapping */
-            position: relative; /* Create a containing block for the title */
-            height: 370px; /* Adjust height of the container */
-        }
-
-        .new-candidate-title-container {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-            background-color: #f5ebd4;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow under title */
-        }
-
-        .new-candidate-title {
-            font-size: 1.8em;
-            margin: 0;
-            background-color: #f5ebd4;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .new-candidate-card-container {
-            display: inline-flex; /* Use inline-flex for row alignment */
-            gap: 20px; /* Space between cards */
-            padding-top: 70px; /* Add space for the title */
-            height: 50%; /* Ensure the cards container fills the available space */
-            align-items: center; /* Center cards vertically within the container */
-            animation: scrollCards 30s linear infinite; /* Adjust the duration to ensure smooth scroll */
-            will-change: transform; /* Improve performance by hinting to the browser */
-        }
-
-        @keyframes scrollCards {
-            0% {
-                transform: translateX(20%); /* Start closer to the right edge */
-            }
-            100% {
-                transform: translateX(calc(-100% - 20px)); /* Translate by 100% plus the gap */
-            }
-        }
-
-        /* Stop the animation when hovering over the candidate card container */
-        .new-candidate-card-container:hover {
-            animation-play-state: paused;
-        }
-
-        .new-candidate-card {
-            background-color: #f7f8f3;
-            border: 2px solid #888;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            width: 180px; /* Adjust width for all cards */
-            height: 250px; /* Adjust height for all cards */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block; /* Ensure cards stay in a single row */
-            vertical-align: middle; /* Align all cards in the middle */
-            overflow: hidden; /* Prevent content overflow */
-        }
-
-        .new-candidate-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        .new-candidate-card h3 {
-            margin: 10px 0;
-            font-size: 1.1em;
-            color: #555; /* Slightly lighter text colour */
-            text-overflow: ellipsis; /* Ensure long names do not stretch the card */
-            white-space: nowrap; /* Prevent text wrapping */
-            overflow: hidden; /* Hide overflow */
-        }
-
-        .new-candidate-card:hover {
-            transform: scale(1.1) translateZ(30px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            z-index: 15; /* Ensure hover state remains visible above other content */
-        }
-
-        .topic-summary-container {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        .new-candidate-card .party-symbol img {
-            width: 50px;  /* Set a smaller width for the party logo */
-            height: 50px; /* Set a smaller height for the party logo */
-            margin-top: 10px; /* Add some margin to separate it from the summary stat */
-        }
-
-        /* Center the party logo within the candidate card */
-        .party-symbol {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* New style for topic summary */
-        .topic-summary-stats {
-            font-size: 1em;
-            color: #333;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* Styles for the Fantasy 11 game feature */
-        #fantasy11-game-start, #topic-selection, #subtopic-selection, #candidate-popup, #result-page {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .subtopic-box {
-            border: 2px dashed #888;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-            cursor: move;
-            background-color: #f7f8f3ee;
-            color: black; /* Set text color to black */
-        }
-
-        #selected-subtopics {
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 150px;
-            background-color: #f7f8f3ee;
-            display: flex;
-            gap: 10px; /* Add space between stacked subtopics */
-            overflow-x: auto; /* Allow horizontal scrolling */
-        }
-
-        #candidate-popup .candidate-card {
-            width: auto;
-            margin: 10px;
-        }
-
-        /* Styles for the start page container */
-        .start-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000; /* Black background */
-            color: #fff; /* White text color */
-            text-align: center;
-            padding: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-            border-radius: 15px; /* Rounded corners */
-            position: relative;
-        }
-
-        .welcome-text {
-            font-size: 3em; /* Large font size for the welcome message */
-            margin-bottom: 20px; /* Space between the text and the button */
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Bold and modern font */
-            letter-spacing: 2px; /* Slightly increased letter spacing for a polished look */
-        }
-
-        .start-button {
-            font-size: 1.5em;
-            padding: 15px 30px;
-            background-color: #ff4500; /* Bright orange-red for the button */
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Deep shadow for button */
-            font-family: 'Arial', sans-serif;
-        }
-
-        .start-button:hover {
-            background-color: #ff6347; /* Lighter shade on hover */
-            transform: scale(1.05); /* Slightly larger on hover */
-        }
-
-        .start-button:active {
-            background-color: #ff6347;
-            transform: scale(1); /* Return to original size when clicked */
-        }
-
-        /* Go Back button styles */
-        .back-button {
-            font-size: 1em;
-            padding: 10px 20px;
-            background-color: #ff4500; /* Bright orange-red for the button */
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        .back-button:hover {
-            background-color: #ff6347; /* Lighter shade on hover */
-            transform: scale(1.05); /* Slightly larger on hover */
-        }
-
-        .back-button:active {
-            background-color: #ff6347;
-            transform: scale(1); /* Return to original size when clicked */
-        }
-
-        /* Additional Styles for Promise List */
-        /* General styles for the containers */
+/* Wrapper to centre the content */
+.wrapper {
+    width: 100%;
+    max-width: 1500px;  /* Adjust the max-width to your preference */
+    margin: 0 auto;  /* Centres the wrapper horizontally */
+    padding: 20px;   /* Optional padding */
+    box-sizing: border-box; /* Ensure padding does not affect total width */
+}
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5ebd4;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background-image: url('parliament.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: #fbedcb;
+    z-index: 10; /* Ensure header is above other content */
+    position: relative;
+}
+
+.logo-container img {
+    height: 70px;
+}
+
+.filter-container {
+    text-align: center; /* Center the filter title */
+    z-index: 15; /* Ensure filters are above section titles */
+    position: relative;
+    display: flex;
+    gap: 8px; /* Remove the gap between the filters */
+    flex-wrap: wrap; /* Allow filters to wrap to the next line if necessary */
+    justify-content: right; /* Center the entire filter container */
+    align-items: center;
+    color: black; /* Set text color to black */
+    margin-top: 20px; /* Add space between filters and the candidate card section */
+}
+
+.multiselect {
+    position: relative;
+    display: inline-block;
+    min-width: 150px; /* Ensure filters have a smaller minimum width */
+    width: auto;
+}
+
+.selectBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px; /* Reduced padding */
+    background-color: #85808075;
+    border: 2px solid #888080;
+    border-left-width: 0px; /* Remove the left border to merge with the previous element */
+    cursor: pointer;
+    min-width: 150px; /* Reduced min-width for smaller containers */
+    width: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: black; /* Set the text color to black */
+}
+
+/* Apply border-radius to the left box */
+.filter-container .multiselect:first-child .selectBox {
+    border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+    border-left-width: 2px; /* Restore the left border */
+}
+
+/* Apply border-radius to the right box */
+.filter-container .multiselect:last-child .selectBox {
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+}
+
+.selectBox:hover +.checkboxes, .checkboxes:hover {
+    border-color: #7a7777; /* Slightly darken border on hover */
+    background-color: #85808075;
+    display: block;
+}
+
+.selectBox::after {
+    content: '\25BC'; /* Unicode for down arrow */
+    font-size: 12px;
+    margin-left: 10px;
+    color: #888;
+}
+
+.checkboxes {
+    display: none;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text to the left */
+    padding-left: 10px; /* Add some padding to the left for better alignment */
+}
+
+.checkboxes label {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+    color: #333; /* Set the text color to dark grey */
+    transition: background-color 0.2s ease;
+    text-align: left; /* Ensure text is aligned to the left */
+}
+
+.checkboxes label:hover {
+    background-color: #f0f0f0;
+}
+
+.hidden {
+    display: none;
+}
+
+.topic-section {
+    margin-bottom: 40px;
+    position: relative;
+    padding-top: 40px; /* Space for the sticky title */
+}
+
+.section-title-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5; /* Ensure titles are above the cards but below filters */
+    background-color: #f5ebd4;
+    border-bottom: 2px solid #ccc;
+    padding: 10px;
+}
+
+.section-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.candidate-card-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+    padding: 20px;
+}
+
+.candidate-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px; /* Centres the image horizontally */
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    width: 200px; /* Consistent width for all cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    white-space: normal; /* Ensure card content wraps within the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animation */
+}
+
+.candidate-card:hover {
+    transform: scale(1.1) translateZ(30px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 15; /* Ensure hover state remains visible above other content */
+}
+
+.candidate-card img {
+    display: block;
+    margin: 0 auto 10px auto; /* Centres the image and adds margin below it */
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.party-symbol {
+    text-align: center; /* Aligns the image to the center */
+    margin-top: 10px;
+}
+
+.party-symbol img {
+    width: 50px; /* Smaller width for the party symbol */
+    height: 50px; /* Smaller height for the party symbol */
+}
+
+.reference-button {
+    display: block;
+    padding: 8px 8px;
+    background-color: #f7f8f3ee;
+    color: rgb(22, 22, 22);
+    border: black;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: auto; /* Push the button to the bottom */
+}
+
+.reference-button:hover {
+    background-color: #959c8074;
+}
+
+.promise-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black; /* Set the text color to black */
+}
+
+.promise-page {
+    font-size: 0.9em;
+    color: black; /* Set the text color to black */
+    margin-bottom: 10px;
+}
+
+.promise-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white; /* Default background color */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto; /* Allow the container to expand to fit content */
+}
+
+/* Updated Page navigation buttons container */
+.page-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.page-button {
+    flex: 1;
+    padding: 15px 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Set a semi-transparent background */
+    color: black; /* Set text colour to black */
+    border: 2px solid #ccc;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.page-button:not(:last-child) {
+    border-right: none; /* Remove border between buttons */
+}
+
+.page-button:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighten the background on hover */
+    color: black; /* Keep text black on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Intensify shadow on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+/* Add styles for Fantasy 11 page */
+.fantasy-candidate-container {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f7f8f3ee;
+}
+
+.fantasy-candidate-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.fantasy-promise {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.fantasy-promise input {
+    margin-right: 10px;
+}
+
+.candidate-card:hover {
+    transform: scale(1.1) translateZ(30px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 15; /* Ensure hover state remains visible above other content */
+}
+
+/* Modal styles */
+.popup-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Stay on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Limit the width */
+    display: flex;
+    justify-content: space-around;
+}
+
+.popup-box {
+    border: 2px dashed #ccc;
+    width: 30%;
+    height: 100px;
+    background-color: #f7f8f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* New candidate section styles */
+.new-candidate-section {
+    padding: 30px;
+    background-color: #f5ebd4; /* White background */
+    border-radius: 10px;
+    margin-bottom: 20px; /* Space below the section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow-x: hidden; /* Prevent vertical scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+    position: relative; /* Create a containing block for the title */
+    height: 370px; /* Adjust height of the container */
+}
+
+.new-candidate-title-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    background-color: #f5ebd4;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow under title */
+}
+
+.new-candidate-title {
+    font-size: 1.8em;
+    margin: 0;
+    background-color: #f5ebd4;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.new-candidate-card-container {
+    display: inline-flex; /* Use inline-flex for row alignment */
+    gap: 20px; /* Space between cards */
+    padding-top: 70px; /* Add space for the title */
+    height: 50%; /* Ensure the cards container fills the available space */
+    align-items: center; /* Center cards vertically within the container */
+    animation: scrollCards 30s linear infinite; /* Adjust the duration to ensure smooth scroll */
+    will-change: transform; /* Improve performance by hinting to the browser */
+}
+
+@keyframes scrollCards {
+    0% {
+        transform: translateX(20%); /* Start closer to the right edge */
+    }
+    100% {
+        transform: translateX(calc(-100% + 20px)); /* Translate by 100% plus the gap */
+    }
+}
+
+/* Stop the animation when hovering over the candidate card container */
+.new-candidate-card-container:hover {
+    animation-play-state: paused;
+}
+
+.new-candidate-card {
+    background-color: #f7f8f3;
+    border: 2px solid #888;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 180px; /* Adjust width for all cards */
+    height: 250px; /* Adjust height for all cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block; /* Ensure cards stay in a single row */
+    vertical-align: middle; /* Align all cards in the middle */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.new-candidate-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.new-candidate-card h3 {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #555; /* Slightly lighter text colour */
+    text-overflow: ellipsis; /* Ensure long names do not stretch the card */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow */
+}
+
+.new-candidate-card:hover {
+    transform: scale(1.1) translateZ(30px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 15; /* Ensure hover state remains visible above other content */
+}
+
+.topic-summary-container {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 10px;
+}
+
+.new-candidate-card .party-symbol img {
+    width: 50px;  /* Set a smaller width for the party logo */
+    height: 50px; /* Set a smaller height for the party logo */
+    margin-top: 10px; /* Add some margin to separate it from the summary stat */
+}
+
+/* Center the party logo within the candidate card */
+.party-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* New style for topic summary */
+.topic-summary-stats {
+    font-size: 1em;
+    color: #333;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Styles for the Fantasy 11 game feature */
+#fantasy11-game-start, #topic-selection, #subtopic-selection, #candidate-popup, #result-page {
+    padding: 20px;
+    text-align: center;
+}
+
+.subtopic-box {
+    border: 2px dashed #888;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: move;
+    background-color: #f7f8f3ee;
+    color: black; /* Set text color to black */
+}
+
+#selected-subtopics {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 150px;
+    background-color: #f7f8f3ee;
+    display: flex;
+    gap: 10px; /* Add space between stacked subtopics */
+    overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+#candidate-popup .candidate-card {
+    width: auto;
+    margin: 10px;
+}
+
+/* Styles for the start page container */
+.start-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text color */
+    text-align: center;
+    padding: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    border-radius: 15px; /* Rounded corners */
+    position: relative;
+}
+
+.welcome-text {
+    font-size: 3em; /* Large font size for the welcome message */
+    margin-bottom: 20px; /* Space between the text and the button */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Bold and modern font */
+    letter-spacing: 2px; /* Slightly increased letter spacing for a polished look */
+}
+
+.start-button {
+    font-size: 1.5em;
+    padding: 15px 30px;
+    background-color: #ff4500; /* Bright orange-red for the button */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Deep shadow for button */
+    font-family: 'Arial', sans-serif;
+}
+
+.start-button:hover {
+    background-color: #ff6347; /* Lighter shade on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.start-button:active {
+    background-color: #ff6347;
+    transform: scale(1); /* Return to original size when clicked */
+}
+
+/* Go Back button styles */
+.back-button {
+    font-size: 1em;
+    padding: 10px 20px;
+    background-color: #ff4500; /* Bright orange-red for the button */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button:hover {
+    background-color: #ff6347; /* Lighter shade on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.back-button:active {
+    background-color: #ff6347;
+    transform: scale(1); /* Return to original size when clicked */
+}
+
+/* Additional Styles for Promise List */
+/* General styles for the containers */
 .promise-list-container {
     display: flex;                /* Use flexbox for layout */
     gap: 10px;                    /* Space between subtopic boxes */
